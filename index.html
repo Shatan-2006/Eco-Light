@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЕкоСвітло — Інжинірингова компанія</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-body: #070c18;
+            --bg-card: #0d1629;
+            --bg-card-hover: #13203c;
+            --royal-blue: #1d4ed8;
+            --royal-light: #3b82f6;
+            --accent-gold: #f59e0b;
+            --accent-emerald: #10b981;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-glass: rgba(59, 130, 246, 0.2);
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: var(--font-family);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ШАПКА САЙТУ */
+        .site-header {
+            width: 100%;
+            background: rgba(7, 12, 24, 0.95);
+            border-bottom: 1px solid var(--border-glass);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.1rem 0;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #ffffff;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--royal-light);
+        }
+
+        .logo-icon {
+            color: var(--accent-gold);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.8rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.25s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--royal-light);
+        }
+
+        .header-action {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn-phone {
+            background: linear-gradient(135deg, #1e3a8a, var(--royal-blue));
+            color: #ffffff;
+            padding: 0.55rem 1.2rem;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid rgba(59, 130, 246, 0.5);
+            box-shadow: 0 4px 14px rgba(29, 78, 216, 0.35);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-phone:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.5);
+        }
+
+        /* ГОЛОВНИЙ БЛОК (HERO) */
+        .hero {
+            padding: 5.5rem 0 4.5rem;
+            background: radial-gradient(circle at 50% 20%, rgba(29, 78, 216, 0.2) 0%, rgba(7, 12, 24, 0) 70%);
+            text-align: center;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            padding: 0.4rem 1.1rem;
+            border-radius: 999px;
+            background: rgba(30, 58, 138, 0.5);
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            color: var(--royal-light);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.1rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 760px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        /* КНОПКИ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 0.85rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.25s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--royal-blue), #2563eb);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(29, 78, 216, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            border-color: var(--border-glass);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* ЗАГАЛЬНІ СЕКЦІЇ ТА КАРТКИ */
+        section {
+            padding: 4.5rem 0;
+            width: 100%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: #ffffff;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            padding: 2.2rem;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--royal-light);
+            background: var(--bg-card-hover);
+        }
+
+        .card-icon {
+            font-size: 2.4rem;
+            margin-bottom: 1.2rem;
+            color: var(--accent-gold);
+        }
+
+        .card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 0.8rem;
+            color: #ffffff;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .brand-badge {
+            background: rgba(13, 22, 41, 0.8);
+            border: 1px solid var(--border-glass);
+            padding: 1.3rem;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--royal-light);
+            letter-spacing: 1px;
+        }
+
+        /* КАЛЬКУЛЯТОР ТА КВІЗ */
+        .calculator-box, .quiz-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .range-wrap {
+            margin: 2rem 0;
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #1e293b;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--royal-light);
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.7);
+        }
+
+        .calc-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            background: rgba(7, 12, 24, 0.6);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 1.8rem;
+            margin-top: 2rem;
+        }
+
+        .calc-stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .calc-stat-value {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+            margin-top: 0.3rem;
+        }
+
+        .quiz-step {
+            display: none;
+        }
+
+        .quiz-step.active {
+            display: block;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .quiz-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-glass);
+            color: #ffffff;
+            padding: 1.2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .quiz-btn:hover, .quiz-btn.selected {
+            background: rgba(29, 78, 216, 0.3);
+            border-color: var(--royal-light);
+        }
+
+        /* ФОРМА ЗАЯВКИ */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            padding: 2.2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .form-control {
+            background: #09101f;
+            border: 1px solid #1e293b;
+            border-radius: 8px;
+            padding: 0.85rem 1rem;
+            color: #ffffff;
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--royal-light);
+        }
+
+        textarea.form-control {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        /* ВИПРАВЛЕНИЙ ПІДВАЛ (ФУТЕР) */
+        .site-footer {
+            width: 100%;
+            margin-top: auto;
+            background: #040810;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 3.5rem 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr;
+            gap: 3rem;
+            padding-bottom: 3rem;
+        }
+
+        .footer-col h3 {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .footer-col h4 {
+            font-size: 1.15rem;
+            color: #ffffff;
+            margin-bottom: 1.2rem;
+            font-weight: 600;
+        }
+
+        .footer-col p {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+
+        .footer-links a, .footer-contact-item a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.92rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover, .footer-contact-item a:hover {
+            color: var(--royal-light);
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-contact-item i {
+            color: var(--royal-light);
+            font-size: 1rem;
+            width: 18px;
+        }
+
+        .footer-bottom {
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 1.5rem 0;
+            text-align: center;
+            font-size: 0.88rem;
+            color: #64748b;
+            background: #02050b;
+        }
+
+        .footer-bottom a {
+            color: var(--royal-light);
+            text-decoration: none;
+        }
+
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+
+        /* АДАПТИВНІСТЬ */
+        @media (max-width: 868px) {
+            .nav-links {
+                display: none;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .quiz-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ШАПКА -->
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="#home" class="logo">
+                <span class="logo-icon">⚡</span> Еко<span>Світло</span>
+            </a>
+            <nav class="main-nav">
+                <ul class="nav-links">
+                    <li><a href="#home">Головна</a></li>
+                    <li><a href="#about">Про компанію</a></li>
+                    <li><a href="#services">Послуги</a></li>
+                    <li><a href="#calculator">Калькулятор та квіз</a></li>
+                    <li><a href="#contacts">Контакти</a></li>
+                </ul>
+            </nav>
+            <div class="header-action">
+                <a href="tel:+38096563245" class="btn-phone">
+                    <i class="fas fa-phone-alt"></i> +38 (096) 563-245
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. ГОЛОВНА -->
+        <section id="home" class="hero">
+            <div class="container">
+                <span class="hero-tag">Енергонезалежні рішення та сонячна енергетика</span>
+                <h1>Надійна автономія для вашого будинку та бізнесу</h1>
+                <p>Комплексне проєктування, постачання та монтаж сучасних сонячних електростанцій (СЕС) і накопичувачів енергії в Києві, області та по всій Україні.</p>
+                <div class="hero-buttons">
+                    <a href="#calculator" class="btn btn-primary"><i class="fas fa-calculator"></i> Розрахувати систему</a>
+                    <a href="#services" class="btn btn-secondary"><i class="fas fa-solar-panel"></i> Наші послуги</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Чому обирають «ЕкоСвітло»</h2>
+                    <p class="section-subtitle">Ми впроваджуємо інженерні стандарти нового покоління без надмірних націнок на стаціонарні склади.</p>
+                </div>
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="card-icon"><i class="fas fa-bolt"></i></div>
+                        <h3>100% Енергонезалежність</h3>
+                        <p>Надійне безперебійне живлення під час аварій та відключень мережі. Автоматичне перемикання на АКБ.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon"><i class="fas fa-hand-holding-dollar"></i></div>
+                        <h3>Оптимальна вартість</h3>
+                        <p>Модель прямих дистриб'юторських постачань (дропшипінг) дозволяє зекономити бюджет без втрати якості.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon"><i class="fas fa-shield-halved"></i></div>
+                        <h3>Обладнання Tier-1</h3>
+                        <p>Встановлюємо сертифіковані світові бренди з офіційною гарантією: Deye, Solis, Jinko Solar, Pylontech.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. ПРО КОМПАНІЮ -->
+        <section id="about" style="background: rgba(13, 22, 41, 0.4); border-top: 1px solid var(--border-glass);">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Про компанію «ЕкоСвітло»</h2>
+                    <p class="section-subtitle">Експертний підхід до сонячної генерації, систем накопичення енергії та надійного електроживлення.</p>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; align-items: center;">
+                    <div>
+                        <h3 style="font-size: 1.8rem; margin-bottom: 1.2rem; color: #fff;">Наша місія — енергетична свобода кожного українця</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 1rem;">Компанія «ЕкоСвітло» розробляє та реалізує системи під ключ — від детального енергоаудиту до здачі об'єкта в експлуатацію.</p>
+                        <p style="color: var(--text-muted);">Відмова від витратних складських комплексів на користь прямої логістики від імпортерів дозволяє клієнтам отримувати сучасне обладнання за чесною ціною.</p>
+                    </div>
+                    <div class="card" style="border-color: var(--royal-light);">
+                        <h3 style="color: var(--accent-gold); margin-bottom: 1rem;"><i class="fas fa-check-circle"></i> Наші переваги:</h3>
+                        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.9rem; color: var(--text-muted);">
+                            <li><strong style="color: #fff;">✓ Індивідуальний інжиніринг:</strong> 3D-моделювання інсоляції покрівлі.</li>
+                            <li><strong style="color: #fff;">✓ Мобільні бригади:</strong> оперативний виїзд по Києву та Київській області.</li>
+                            <li><strong style="color: #fff;">✓ Акумулятори LiFePO4:</strong> безпечні літієві блоки з терміном служби 15+ років.</li>
+                            <li><strong style="color: #fff;">✓ Супровід:</strong> допомога з оформленням та підключенням Net Billing.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. ПОСЛУГИ ТА ОБЛАДНАННЯ -->
+        <section id="services">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Послуги та технологічне обладнання</h2>
+                    <p class="section-subtitle">Комплексні рішення під ключ з індивідуальним підбором параметрів.</p>
+                </div>
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="card-icon"><i class="fas fa-solar-panel"></i></div>
+                        <h3>Гібридні СЕС</h3>
+                        <p>Генерація від сонця та накопичення енергії в акумуляторах для повної автономії.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon"><i class="fas fa-car-battery"></i></div>
+                        <h3>Резервне живлення</h3>
+                        <p>Інверторні комплекси з АКБ без панелей для квартир, кав'ярень, аптек та офісів.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon"><i class="fas fa-magnifying-glass-chart"></i></div>
+                        <h3>Енергоаудит</h3>
+                        <p>Вимір пікових навантажень, тепловізійне обстеження та оптимізація розміщення модулів.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon"><i class="fas fa-screwdriver-wrench"></i></div>
+                        <h3>Монтаж та запуск</h3>
+                        <p>Професійне встановлення на будь-якому типі покрівлі з дотриманням правил безпеки.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon"><i class="fas fa-file-signature"></i></div>
+                        <h3>Підключення Net Billing</h3>
+                        <p>Юридичний та інженерний супровід продажу надлишків виробленої енергії в мережу.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon"><i class="fas fa-mobile-screen"></i></div>
+                        <h3>Хмарний моніторинг</h3>
+                        <p>Контроль генерації, заряду батарей та споживання через мобільний додаток 24/7.</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 3.5rem;">
+                    <div class="section-header" style="margin-bottom: 2rem;">
+                        <h3 style="font-size: 1.6rem; color: #fff;">Сертифіковані світові бренди Tier-1</h3>
+                    </div>
+                    <div class="brands-grid">
+                        <div class="brand-badge">DEYE</div>
+                        <div class="brand-badge">SOLIS</div>
+                        <div class="brand-badge">JINKO SOLAR</div>
+                        <div class="brand-badge">PYLONTECH</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. КАЛЬКУЛЯТОР ТА КВІЗ -->
+        <section id="calculator" style="background: rgba(13, 22, 41, 0.4); border-top: 1px solid var(--border-glass);">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Калькулятор окупності та квіз підбору</h2>
+                    <p class="section-subtitle">Оцініть економічну ефективність та підберіть конфігурацію системи.</p>
+                </div>
+
+                <div class="calculator-box">
+                    <h3 style="font-size: 1.5rem; color: #fff; margin-bottom: 1.5rem;">1. Розрахунок параметрів станції</h3>
+                    <div class="range-wrap">
+                        <div class="slider-label">
+                            <span>Потужність станції:</span>
+                            <span id="calc-power-val" style="color: var(--royal-light); font-size: 1.4rem;">10 кВт</span>
+                        </div>
+                        <input type="range" id="calc-power" min="3" max="30" step="1" value="10">
+                    </div>
+                    <div class="calc-results">
+                        <div>
+                            <div class="calc-stat-label">Орієнтовна генерація</div>
+                            <div class="calc-stat-value" id="calc-generation">11 000 кВт·год/рік</div>
+                        </div>
+                        <div>
+                            <div class="calc-stat-label">Орієнтовна вартість</div>
+                            <div class="calc-stat-value" id="calc-cost">від 300 000 грн</div>
+                        </div>
+                        <div>
+                            <div class="calc-stat-label">Термін окупності</div>
+                            <div class="calc-stat-value" id="calc-payback">~3.8 – 4.2 роки</div>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1.2rem; text-align: center;">
+                        *Остаточна вартість розраховується інженером після огляду покрівлі та аудиту навантаження.
+                    </p>
+                </div>
+
+                <div class="quiz-box">
+                    <h3 style="font-size: 1.5rem; color: #fff; margin-bottom: 1.5rem;">2. Швидкий квіз підбору</h3>
+
+                    <div class="quiz-step active" id="quiz-step-1">
+                        <h4 style="margin-bottom: 1rem; color: #fff;">Крок 1: Який тип вашого об'єкта?</h4>
+                        <div class="quiz-options">
+                            <button type="button" class="quiz-btn quiz-opt selected" data-category="objectType" data-val="Приватний будинок">
+                                🏠 Приватний будинок / Котедж
+                            </button>
+                            <button type="button" class="quiz-btn quiz-opt" data-category="objectType" data-val="Малий бізнес">
+                                🏢 Малий або середній бізнес
+                            </button>
+                        </div>
+                        <div style="text-align: right;">
+                            <button type="button" class="btn btn-primary btn-quiz-next" data-step="1">Далі <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="quiz-step" id="quiz-step-2">
+                        <h4 style="margin-bottom: 1rem; color: #fff;">Крок 2: Головна мета встановлення?</h4>
+                        <div class="quiz-options">
+                            <button type="button" class="quiz-btn quiz-opt selected" data-category="target" data-val="Повна автономія під час блекаутів">
+                                🔋 Повна автономія під час відключень
+                            </button>
+                            <button type="button" class="quiz-btn quiz-opt" data-category="target" data-val="Економія витрат на електрику">
+                                📉 Економія витрат на електроенергію
+                            </button>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <button type="button" class="btn btn-secondary btn-quiz-prev" data-step="2"><i class="fas fa-arrow-left"></i> Назад</button>
+                            <button type="button" class="btn btn-primary btn-quiz-next" data-step="2">Далі <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="quiz-step" id="quiz-step-3">
+                        <h4 style="margin-bottom: 1rem; color: #fff;">Крок 3: Скільки фаз заведено на об'єкт?</h4>
+                        <div class="quiz-options">
+                            <button type="button" class="quiz-btn quiz-opt selected" data-category="phase" data-val="1 фаза (220 В)">
+                                ⚡ 1 фаза (220 В)
+                            </button>
+                            <button type="button" class="quiz-btn quiz-opt" data-category="phase" data-val="3 фази (380 В)">
+                                ⚡⚡⚡ 3 фази (380 В)
+                            </button>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <button type="button" class="btn btn-secondary btn-quiz-prev" data-step="3"><i class="fas fa-arrow-left"></i> Назад</button>
+                            <button type="button" class="btn btn-primary btn-quiz-next" data-step="3">Отримати результат <i class="fas fa-check"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="quiz-step" id="quiz-result">
+                        <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid var(--accent-emerald); border-radius: 12px; padding: 2rem; text-align: center;">
+                            <h4 style="color: var(--accent-emerald); margin-bottom: 1rem;"><i class="fas fa-circle-check"></i> Рекомендацію сформовано!</h4>
+                            <p id="quiz-summary-text" style="color: #fff; font-size: 1.05rem; margin-bottom: 1.5rem;"></p>
+                            <a href="#contacts" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Перейти до форми заявки</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. КОНТАКТИ -->
+        <section id="contacts">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Контакти та онлайн-замовлення</h2>
+                    <p class="section-subtitle">Залиште заявку або зв'яжіться з нами прямо зараз.</p>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem;">
+                    <div>
+                        <div class="card" style="margin-bottom: 1.5rem;">
+                            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 1.2rem;">
+                                <div style="font-size: 1.6rem; color: var(--royal-light);"><i class="fas fa-phone-volume"></i></div>
+                                <div>
+                                    <div style="font-size: 0.85rem; color: var(--text-muted);">Телефон для зв'язку:</div>
+                                    <div style="font-size: 1.25rem; font-weight: 700;"><a href="tel:+38096563245" style="color: #fff; text-decoration: none;">+38 (096) 563-245</a></div>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 1.2rem;">
+                                <div style="font-size: 1.6rem; color: #229ed9;"><i class="fab fa-telegram"></i></div>
+                                <div>
+                                    <div style="font-size: 0.85rem; color: var(--text-muted);">Telegram:</div>
+                                    <div><a href="https://t.me/" target="_blank" style="color: #fff; text-decoration: none;">Написати в Telegram</a></div>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div style="font-size: 1.6rem; color: var(--accent-gold);"><i class="fas fa-envelope"></i></div>
+                                <div>
+                                    <div style="font-size: 0.85rem; color: var(--text-muted);">Електронна пошта:</div>
+                                    <div><a href="mailto:d.shatan@knute.edu.ua" style="color: #fff; text-decoration: none;">d.shatan@knute.edu.ua</a></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h4 style="color: #fff; margin-bottom: 0.8rem;"><i class="fas fa-clock"></i> Графік роботи</h4>
+                            <p style="color: var(--text-muted); margin-bottom: 0.4rem;">Пн – Сб: 09:00 – 19:00</p>
+                            <p style="color: var(--text-muted); margin-bottom: 0.4rem;">Нд: Прийом онлайн-заявок 24/7</p>
+                            <p style="color: var(--royal-light); font-size: 0.9rem; margin-top: 1rem;"><i class="fas fa-location-dot"></i> Київ, Київська область та вся Україна</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <form class="contact-form" id="lead-order-form">
+                            <h3 style="font-size: 1.6rem; color: #fff; margin-bottom: 0.3rem;">Заявка на прорахунок</h3>
+                            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.8rem;">Інженер зв'яжеться з вами протягом 15 хвилин.</p>
+
+                            <div class="form-group">
+                                <label for="client-name">Ваше ім'я *</label>
+                                <input type="text" id="client-name" class="form-control" required placeholder="Олександр">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="client-phone">Номер телефону *</label>
+                                <input type="tel" id="client-phone" class="form-control" required placeholder="+38 (0__) ___-__-__">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="client-type">Тип об'єкта</label>
+                                <select id="client-type" class="form-control">
+                                    <option value="private">Приватний житловий будинок / дача</option>
+                                    <option value="business">Комерційний об'єкт / Офіс / Кав'ярня</option>
+                                    <option value="other">Інше</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="client-msg">Побажання щодо системи</label>
+                                <textarea id="client-msg" class="form-control" placeholder="Наприклад: потрібна система на 10 кВт з акумулятором..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem;"><i class="fas fa-paper-plane"></i> Надіслати заявку</button>
+
+                            <div id="form-success-msg" style="display: none; background: rgba(16, 185, 129, 0.2); border: 1px solid var(--accent-emerald); color: #fff; padding: 1rem; border-radius: 8px; text-align: center; margin-top: 1rem;">
+                                Дякуємо! Ваша заявка зареєстрована. Інженер зателефонує найближчим часом.
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ПІДВАЛ (ФУТЕР) -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h3>ЕкоСвітло</h3>
+                <p>Інжинірингова компанія енергонезалежних рішень та сонячної енергетики. Проєктування, підбір обладнання та монтаж систем збереження енергії.</p>
+                <p><strong>Регіон:</strong> Київ та Київська область, вся Україна</p>
+            </div>
+            <div class="footer-col">
+                <h4>Навігація</h4>
+                <ul class="footer-links">
+                    <li><a href="#home">Головна</a></li>
+                    <li><a href="#about">Про компанію</a></li>
+                    <li><a href="#services">Послуги та обладнання</a></li>
+                    <li><a href="#calculator">Калькулятор та квіз</a></li>
+                    <li><a href="#contacts">Контакти</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Зв'язок</h4>
+                <div class="footer-contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <a href="tel:+38096563245">+38 (096) 563-245</a>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fab fa-telegram"></i>
+                    <a href="https://t.me/" target="_blank">Написати в Telegram</a>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:d.shatan@knute.edu.ua">d.shatan@knute.edu.ua</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© 2026 Інжинірингова компанія «ЕкоСвітло». Всі права захищено | Розроблено: Шатан Дар'я, <a href="mailto:d.shatan@knute.edu.ua">d.shatan@knute.edu.ua</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- СКРИПТИ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Калькулятор
+            const powerSlider = document.getElementById('calc-power');
+            const powerValDisplay = document.getElementById('calc-power-val');
+            const genDisplay = document.getElementById('calc-generation');
+            const costDisplay = document.getElementById('calc-cost');
+            const paybackDisplay = document.getElementById('calc-payback');
+
+            if (powerSlider && powerValDisplay) {
+                function updateCalc() {
+                    const kw = parseFloat(powerSlider.value);
+                    powerValDisplay.textContent = `${kw} кВт`;
+                    const annualKwh = Math.round(kw * 1100);
+                    genDisplay.textContent = `${annualKwh.toLocaleString()} кВт·год/рік`;
+                    const approxCost = Math.round(kw * 30000);
+                    costDisplay.textContent = `від ${approxCost.toLocaleString()} грн`;
+                    paybackDisplay.textContent = `~3.8 – 4.2 роки`;
+                }
+                powerSlider.addEventListener('input', updateCalc);
+                updateCalc();
+            }
+
+            // Квіз
+            const nextBtns = document.querySelectorAll('.btn-quiz-next');
+            const prevBtns = document.querySelectorAll('.btn-quiz-prev');
+            const quizResult = document.getElementById('quiz-result');
+            const userChoices = { objectType: '', target: '', phase: '' };
+
+            document.querySelectorAll('.quiz-opt').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const step = this.closest('.quiz-step');
+                    step.querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('selected'));
+                    this.classList.add('selected');
+                    const category = this.dataset.category;
+                    userChoices[category] = this.dataset.val;
+                });
+            });
+
+            nextBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const currentStepNum = parseInt(btn.dataset.step);
+                    const nextStep = document.getElementById(`quiz-step-${currentStepNum + 1}`);
+                    if (nextStep) {
+                        document.getElementById(`quiz-step-${currentStepNum}`).classList.remove('active');
+                        nextStep.classList.add('active');
+                    } else if (currentStepNum === 3) {
+                        document.getElementById('quiz-step-3').classList.remove('active');
+                        if (quizResult) {
+                            quizResult.classList.add('active');
+                            document.getElementById('quiz-summary-text').textContent = 
+                                `Підібрано для: ${userChoices.objectType || 'Об`єкта'} (${userChoices.phase || '1 фаза'}), ціль: ${userChoices.target || 'Автономність'}. Рекомендовано гібридну систему з акумулятором LiFePO4.`;
+                        }
+                    }
+                });
+            });
+
+            prevBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const currentStepNum = parseInt(btn.dataset.step);
+                    const prevStep = document.getElementById(`quiz-step-${currentStepNum - 1}`);
+                    if (prevStep) {
+                        document.getElementById(`quiz-step-${currentStepNum}`).classList.remove('active');
+                        prevStep.classList.add('active');
+                    }
+                });
+            });
+
+            // Форма
+            const orderForm = document.getElementById('lead-order-form');
+            if (orderForm) {
+                orderForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const successMsg = document.getElementById('form-success-msg');
+                    if (successMsg) {
+                        successMsg.style.display = 'block';
+                        orderForm.reset();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
